@@ -1,0 +1,240 @@
+{
+  "snyk": {
+    "tokenKeychainService": "snyk-api-token",
+    "orgId": "00000000-0000-0000-0000-000000000000",
+    "mode": "required"
+  },
+  "npm": {
+    "tokenKeychainService": "npm-publish-token",
+    "registry": "https://registry.npmjs.org"
+  },
+  "redaction": {
+    "terms": [
+      "contoso-internal",
+      "your-username"
+    ],
+    "patterns": [
+      {
+        "name": "real ticket key",
+        "regex": "\\b(?:HELP|HR)-\\d+\\b",
+        "flags": "g"
+      },
+      {
+        "name": "your service account host",
+        "regex": "\\b[a-z0-9-]+\\.your-saas\\.example\\b",
+        "flags": "gi"
+      }
+    ],
+    "allow": []
+  },
+  "maintenance": {
+    "cadence": {
+      "weekday": "thursday",
+      "everyWeeks": 2,
+      "firstDay": "2026-11-19"
+    },
+    "autoShip": true,
+    "checkAt": "09:00",
+    "improvements": {
+      "weekday": "monday",
+      "at": "10:00"
+    }
+  },
+  "liveTest": {
+    "environmentId": "00000000-0000-0000-0000-000000000000",
+    "environmentKey": "environment",
+    "prefix": "shipsecure-mcp test",
+    "environmentEnvVars": [],
+    "extraVerbs": [],
+    "extraDeny": [],
+    "targetKeys": [],
+    "allowTargets": []
+  },
+  "apiWatch": {
+    "sources": [
+      {
+        "kind": "csdl",
+        "name": "example-odata",
+        "url": "https://api.example.com/odata/$metadata",
+        "tokenCommand": [
+          "example-cli",
+          "get-token",
+          "--resource",
+          "https://api.example.com"
+        ],
+        "detail": "operations"
+      },
+      {
+        "kind": "npm-latest",
+        "name": "key-packages",
+        "packages": [
+          "@modelcontextprotocol/sdk",
+          "zod"
+        ]
+      },
+      {
+        "kind": "github-dir",
+        "name": "mcp-spec",
+        "url": "https://api.github.com/repos/modelcontextprotocol/modelcontextprotocol/contents/schema"
+      },
+      {
+        "kind": "command",
+        "name": "example-cloud",
+        "command": [
+          "node",
+          "~/.config/shipsecure-mcp/watch/example-cloud.mjs"
+        ],
+        "timeoutSeconds": 120,
+        "note": "prints {\"resource/type\": \"api versions\"} as JSON"
+      }
+    ],
+    "noSpec": [
+      {
+        "service": "Example service API",
+        "note": "no published spec; read its release notes"
+      }
+    ]
+  },
+  "projects": {
+    "example-mcp": {
+      "description": "npm example-mcp, public docs example-mcp-docs",
+      "private": {
+        "path": "~/example-mcp",
+        "repo": "owner/example-mcp",
+        "branch": "main"
+      },
+      "public": {
+        "path": "~/example-mcp-docs",
+        "repo": "owner/example-mcp-docs",
+        "branch": "main"
+      },
+      "npm": {
+        "package": "example-mcp",
+        "licenseTitle": "MIT",
+        "publishVia": "trusted",
+        "releaseWorkflow": "Release",
+        "publishJob": "publish"
+      },
+      "versionFiles": [
+        {
+          "path": "manifest.json",
+          "key": "version"
+        },
+        {
+          "path": ".claude-plugin/plugin.json",
+          "key": "version"
+        }
+      ],
+      "publicVersionFiles": [
+        {
+          "path": "plugin/.claude-plugin/plugin.json",
+          "key": "version"
+        }
+      ],
+      "changelog": {
+        "path": "CHANGELOG.md",
+        "publicPath": "CHANGELOG.md",
+        "publicMode": "index-and-section"
+      },
+      "docsCommand": [
+        "npm",
+        "run",
+        "docs:tools"
+      ],
+      "gate": [
+        [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        [
+          "npm",
+          "run",
+          "lint"
+        ],
+        [
+          "npm",
+          "test"
+        ],
+        [
+          "npm",
+          "run",
+          "build"
+        ]
+      ],
+      "syncFiles": [
+        {
+          "from": "README.md",
+          "to": "README.md"
+        },
+        {
+          "from": "CLAUDE.md",
+          "to": "CLAUDE.md",
+          "mode": "scrub",
+          "scrubHeadings": [
+            "Release process rules"
+          ]
+        },
+        {
+          "from": "skills",
+          "to": "plugin/skills",
+          "kind": "dir",
+          "exclude": [
+            ".DS_Store"
+          ]
+        }
+      ],
+      "heldWorkflows": [],
+      "forbiddenPublicTerms": [
+        "internal-only"
+      ],
+      "toolCountFiles": [
+        "private:README.md",
+        "private:package.json",
+        "public:.claude-plugin/marketplace.json"
+      ],
+      "forbiddenPackagePaths": [
+        "RELEASING.md",
+        ".env"
+      ],
+      "commitTrailers": [],
+      "dev": {
+        "branch": "develop",
+        "path": "~/example-mcp-dev"
+      },
+      "build": {
+        "command": [
+          "npm",
+          "run",
+          "build"
+        ],
+        "entry": "dist/index.js",
+        "env": {}
+      },
+      "liveCheck": {
+        "tool": "ping_service",
+        "args": {
+          "message": "connectivity test"
+        },
+        "debug": "example-lib:*",
+        "note": "One harmless call against a test target the maintainer approved.",
+        "covers": ["example-sdk"]
+      },
+      "liveChecks": [
+        {
+          "tool": "get_token_status",
+          "args": {},
+          "note": "Goes through the auth library and the HTTP client: the call that proves their updates.",
+          "covers": ["example-auth", "undici"]
+        }
+      ],
+      "rebuild": ["keytar", "esbuild"]
+    },
+    "example-service": {
+      "description": "Guard-only (no npm section): scans, Dependabot reviews, the credential checks and the gate; nothing ships",
+      "source": { "path": "~/example-service", "repo": "owner/example-service", "branch": "main" },
+      "gate": [["make", "lint"], ["make", "test"]],
+      "checks": "local"
+    }
+  }
+}

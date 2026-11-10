@@ -1,0 +1,117 @@
+<svg viewBox="0 0 760 890" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;">
+  <title>ShipSecure MCP: guard any project, ship npm packages safely</title>
+  <desc>Guard, for any git repository: secret scan of the files and the whole history, dependency scan, pre-push check, Claude Code hook, repository check and alerts. Ship, for npm packages: the patch cycle (scan, fix, gate, push and rescan) and ship day (preflight, release commit, tag and Release with an SBOM and verification report, npm publish, public docs sync, six-artifact check).</desc>
+
+  <defs>
+    <marker id="arrow-patch" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-ship" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <rect width="760" height="890" fill="#ffffff" rx="8"/>
+
+  <!-- Title -->
+  <text x="380" y="38" text-anchor="middle" font-size="18" font-weight="700" fill="#111827">Guard any project. Ship npm packages safely.</text>
+  <text x="380" y="60" text-anchor="middle" font-size="12.5" fill="#4b5563">Every arrow is a check. Nothing changes until you say go, and only what you approve ships.</text>
+
+  <!-- 1. Patch cycle -->
+  <rect x="30" y="80" width="450" height="292" rx="10" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="48" y="106" font-size="12" font-weight="700" fill="#1d4ed8" letter-spacing="0.6">SHIP · 1  KEEP IT PATCHED</text>
+  <text x="462" y="106" text-anchor="end" font-size="11.5" fill="#1d4ed8">npm packages, any day</text>
+
+  <rect x="48" y="124" width="414" height="48" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="62" y="144" font-size="13" font-weight="700" fill="#111827">Check the libraries</text>
+  <text x="62" y="161" font-size="11.5" fill="#4b5563">Known security holes, from Snyk (free account) and npm audit</text>
+  <line x1="255" y1="172" x2="255" y2="184" stroke="#2563eb" stroke-width="1.6" marker-end="url(#arrow-patch)"/>
+
+  <rect x="48" y="186" width="414" height="48" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="62" y="206" font-size="13" font-weight="700" fill="#111827">Fix</text>
+  <text x="62" y="223" font-size="11.5" fill="#4b5563">Upgrades, and Dependabot updates after a safety review</text>
+  <line x1="255" y1="234" x2="255" y2="246" stroke="#2563eb" stroke-width="1.6" marker-end="url(#arrow-patch)"/>
+
+  <rect x="48" y="248" width="414" height="48" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="62" y="268" font-size="13" font-weight="700" fill="#111827">Test</text>
+  <text x="62" y="285" font-size="11.5" fill="#4b5563">Your tests and build, on GitHub or on your own computer</text>
+  <line x1="255" y1="296" x2="255" y2="308" stroke="#2563eb" stroke-width="1.6" marker-end="url(#arrow-patch)"/>
+
+  <rect x="48" y="310" width="414" height="48" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="62" y="330" font-size="13" font-weight="700" fill="#111827">Upload, then check again</text>
+  <text x="62" y="347" font-size="11.5" fill="#4b5563">Uploaded to GitHub, then scanned once more</text>
+
+  <line x1="255" y1="372" x2="255" y2="386" stroke="#059669" stroke-width="1.6" marker-end="url(#arrow-ship)"/>
+
+  <!-- 2. Ship day -->
+  <rect x="30" y="388" width="450" height="416" rx="10" fill="#ecfdf5" stroke="#a7f3d0"/>
+  <text x="48" y="414" font-size="12" font-weight="700" fill="#047857" letter-spacing="0.6">SHIP · 2  RELEASE</text>
+  <text x="462" y="414" text-anchor="end" font-size="11.5" fill="#047857">when you say ship it, or on a release day</text>
+
+  <rect x="48" y="432" width="414" height="48" rx="7" fill="#ffffff" stroke="#6ee7b7"/>
+  <text x="62" y="452" font-size="13" font-weight="700" fill="#111827">Check before release</text>
+  <text x="62" y="469" font-size="11.5" fill="#4b5563">Version, what goes in the package, keys, public wording</text>
+  <line x1="255" y1="480" x2="255" y2="492" stroke="#059669" stroke-width="1.6" marker-end="url(#arrow-ship)"/>
+
+  <rect x="48" y="494" width="414" height="48" rx="7" fill="#ffffff" stroke="#6ee7b7"/>
+  <text x="62" y="514" font-size="13" font-weight="700" fill="#111827">Prepare</text>
+  <text x="62" y="531" font-size="11.5" fill="#4b5563">Version numbers raised, changelog dated, every test run</text>
+  <line x1="255" y1="542" x2="255" y2="554" stroke="#059669" stroke-width="1.6" marker-end="url(#arrow-ship)"/>
+
+  <rect x="48" y="556" width="414" height="48" rx="7" fill="#ffffff" stroke="#6ee7b7"/>
+  <text x="62" y="576" font-size="13" font-weight="700" fill="#111827">Record it on GitHub</text>
+  <text x="62" y="593" font-size="11.5" fill="#4b5563">A tagged release with its parts list (SBOM) and a test report</text>
+  <line x1="255" y1="604" x2="255" y2="616" stroke="#059669" stroke-width="1.6" marker-end="url(#arrow-ship)"/>
+
+  <rect x="48" y="618" width="414" height="48" rx="7" fill="#ffffff" stroke="#6ee7b7"/>
+  <text x="62" y="638" font-size="13" font-weight="700" fill="#111827">Publish to npm</text>
+  <text x="62" y="655" font-size="11.5" fill="#4b5563">No token needed, or you approve it with 2FA on your phone</text>
+  <line x1="255" y1="666" x2="255" y2="678" stroke="#059669" stroke-width="1.6" marker-end="url(#arrow-ship)"/>
+
+  <rect x="48" y="680" width="414" height="48" rx="7" fill="#ffffff" stroke="#6ee7b7"/>
+  <text x="62" y="700" font-size="13" font-weight="700" fill="#111827">Update the public docs</text>
+  <text x="62" y="717" font-size="11.5" fill="#4b5563">Every new line checked for private details first</text>
+  <line x1="255" y1="728" x2="255" y2="740" stroke="#059669" stroke-width="1.6" marker-end="url(#arrow-ship)"/>
+
+  <rect x="48" y="742" width="414" height="48" rx="7" fill="#ffffff" stroke="#6ee7b7"/>
+  <text x="62" y="762" font-size="13" font-weight="700" fill="#111827">Confirm</text>
+  <text x="62" y="779" font-size="11.5" fill="#4b5563">All six parts of the release checked, one by one</text>
+
+  <!-- Always on -->
+  <rect x="500" y="80" width="230" height="724" rx="10" fill="#f5f3ff" stroke="#ddd6fe"/>
+  <text x="518" y="106" font-size="12" font-weight="700" fill="#6d28d9" letter-spacing="0.6">GUARD · ANY PROJECT</text>
+
+  <rect x="516" y="128" width="198" height="96" rx="7" fill="#ffffff" stroke="#c4b5fd"/>
+  <text x="530" y="158" font-size="13" font-weight="700" fill="#111827">Secret scan</text>
+  <text x="530" y="180" font-size="11.5" fill="#4b5563">Keys and passwords in your</text>
+  <text x="530" y="197" font-size="11.5" fill="#4b5563">files and every old version</text>
+
+  <rect x="516" y="241" width="198" height="96" rx="7" fill="#ffffff" stroke="#c4b5fd"/>
+  <text x="530" y="271" font-size="13" font-weight="700" fill="#111827">Library scan</text>
+  <text x="530" y="293" font-size="11.5" fill="#4b5563">npm, Python, Go, Rust, Ruby,</text>
+  <text x="530" y="310" font-size="11.5" fill="#4b5563">PHP and .NET projects</text>
+
+  <rect x="516" y="354" width="198" height="96" rx="7" fill="#ffffff" stroke="#c4b5fd"/>
+  <text x="530" y="384" font-size="13" font-weight="700" fill="#111827">Upload check</text>
+  <text x="530" y="406" font-size="11.5" fill="#4b5563">Stops an upload that</text>
+  <text x="530" y="423" font-size="11.5" fill="#4b5563">carries a key or password</text>
+
+  <rect x="516" y="467" width="198" height="96" rx="7" fill="#ffffff" stroke="#c4b5fd"/>
+  <text x="530" y="497" font-size="13" font-weight="700" fill="#111827">Claude Code check</text>
+  <text x="530" y="519" font-size="11.5" fill="#4b5563">Keeps keys out of the files</text>
+  <text x="530" y="536" font-size="11.5" fill="#4b5563">Claude writes for you</text>
+
+  <rect x="516" y="580" width="198" height="96" rx="7" fill="#ffffff" stroke="#c4b5fd"/>
+  <text x="530" y="610" font-size="13" font-weight="700" fill="#111827">GitHub settings check</text>
+  <text x="530" y="632" font-size="11.5" fill="#4b5563">Safety settings checked,</text>
+  <text x="530" y="649" font-size="11.5" fill="#4b5563">with how to fix each one</text>
+
+  <rect x="516" y="693" width="198" height="96" rx="7" fill="#ffffff" stroke="#c4b5fd"/>
+  <text x="530" y="723" font-size="13" font-weight="700" fill="#111827">Alerts</text>
+  <text x="530" y="745" font-size="11.5" fill="#4b5563">Phone, desktop and GitHub</text>
+  <text x="530" y="762" font-size="11.5" fill="#4b5563">when something needs you</text>
+
+  <!-- Result -->
+  <rect x="30" y="824" width="700" height="46" rx="8" fill="#111827"/>
+  <text x="380" y="852" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">Keys caught before they leak, and npm releases you can check afterwards</text>
+</svg>
