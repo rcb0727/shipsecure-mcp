@@ -2,6 +2,23 @@
 
 All notable changes to shipsecure-mcp are recorded here. Versions follow [semantic versioning](https://semver.org): patch for fixes, minor when the product changes shape, major when something breaks.
 
+## [0.1.2] - 2026-11-22
+
+### Changed
+
+- **The public sync moves the public tool counts itself.** The first "N tools" claim in each `public:` `toolCountFiles` entry follows the private count at the tag, in the same docs commit. Before, a count change meant a hand edit and an extra commit in the public repository, which then failed preflight's "public repo level with its remote". Preflight now reports differing public counts as information, not a warning.
+- **`ship_npm_publish` takes `waitSeconds` (10 to 300)** as a shorter alternative to `waitMinutes`, so an approval wait polls in short rounds and a fresh link reaches the maintainer sooner.
+- **The ship-day guide adds a prep list, batching and a links rule.** Take every Dependabot PR before the word to ship (a conflicting one gets a rebase comment and is not waited for), draft the RELEASING.md paragraph early, batch each step across projects, and paste every sign-in or approval link into the chat itself the moment it exists.
+- **A ship tests the same content once.** A gate that passed in a clean checkout is remembered by the commit's content, the gate and install commands, the repository and the Node version and machine it ran on, so `ship_push` and `local_gate` do not run it again on a commit with the same tree within the hour, and still record the result. `reuseGate: false` in a project always runs it. When a project verifies on your computer, `ship_release_commit` commits first and gates that commit in a clean checkout, undoing the commit if the gate fails. A failed gate is never remembered.
+- **A ship scans each commit once.** `ship_tag_release` reuses a clean scan of the same commit from `ship_push` within the last ten minutes and says so; a scan with a gap or a blocking finding is never reused. The verification report still carries the scan summary.
+- **Staged publishing checks who staged a version.** A checksum, listed by npm or remembered here, counts only when the account signed in now is the one that staged it, and a stage npm names no account for is refused.
+- **The public docs commit message is scanned for private data** like every other line bound for the public repository.
+- **On Linux, the npm approval runs under `/bin/sh`**, whatever your own shell is.
+- **The example config leaves `autoShip` off**, so a scheduled run ships on its own only once you turn it on.
+- **The ship-day guide starts the npm sign-in first** and runs the steps that do not wait for npm side by side while npm reviews a staged package.
+
+- **Development dependency update:** vitest 5.1.1.
+
 ## [0.1.1] - 2026-11-10
 
 ### Fixed

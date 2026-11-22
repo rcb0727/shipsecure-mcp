@@ -33,7 +33,7 @@
       "everyWeeks": 2,
       "firstDay": "2026-11-19"
     },
-    "autoShip": true,
+    "autoShip": false,
     "checkAt": "09:00",
     "improvements": {
       "weekday": "monday",

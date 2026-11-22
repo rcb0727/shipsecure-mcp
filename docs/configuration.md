@@ -16,6 +16,7 @@ The settings live in `~/.config/shipsecure-mcp/config.json`, readable only by yo
 | `gate` | The commands run before every release commit and by the local gate |
 | `checks` | Where pushes are verified: `auto`, `actions` or `local` |
 | `checksInstall` | The local gate's install command (`npm ci` by default; empty for a repository without npm) |
+| `reuseGate` | Reuse a local gate pass for the same content from the last hour (`true` by default; `false` always runs the gate) |
 | `versionFiles`, `changelog`, `docsCommand` | What the release commit bumps, dates and regenerates |
 | `syncFiles`, `toolCountFiles`, `forbiddenPublicTerms` | What the public sync copies and checks |
 | `dev` | The development branch and its worktree |
@@ -28,6 +29,6 @@ The settings live in `~/.config/shipsecure-mcp/config.json`, readable only by yo
 | `npm` | The registry and the token's credential-store name |
 | `redaction` | Your own names and patterns to keep out of public text |
 | `secrets` | gitleaks: `auto`, `required` or `off` |
-| `maintenance` | The release days, the daily check's time, and whether a run may ship on its own |
+| `maintenance` | The release days, the daily check's time, and whether a run may ship on its own. `autoShip` is an opt-in: a scheduled run ships on its own only when it is true and npm shows a trusted publish for the package |
 | `notify` | Alerts: ntfy topic, desktop, GitHub issues |
 | `liveTest`, `apiWatch`, `socket` | Live checks against a test account, API change tracking, Socket.dev scores |
