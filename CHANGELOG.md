@@ -2,6 +2,20 @@
 
 All notable changes to shipsecure-mcp are recorded here. Versions follow [semantic versioning](https://semver.org): patch for fixes, minor when the product changes shape, major when something breaks.
 
+## [0.2.0] - 2026-11-27
+
+### Added
+
+- **`ship_run` ships a release in one call.** It walks the ship-day checklist: preflight, release commit, push, private tag and Release, npm, the public docs, the public tag and the six-artifact check. It runs each step's dry run itself and goes on only when that dry run holds no FAIL and no WARN. Anything unexpected stops it with the checklist, the lines that stopped it and an alert. With staged publishing, the npm sign-in link comes first and the approval link comes back as the first line of the result; the public docs sync runs while npm reviews. Every call first reads what is true (the commit, the push, the tags and Releases, what npm serves, the public checkout) and continues at the first step not done, so calling it again after a tap or a stop repeats nothing, and after a finished ship it says so. It never publishes with a token. Whatever a read says about npm, the publish step always runs its verification before any docs move, a tag counts as done only with its Release carrying the SBOM and verification report, only one ship runs per project at a time, and a ship stops when commits were added after the release commit or when a tag push would publish by itself on a staged ship. A WARN is accepted only by naming its step and its exact line after a stop has shown it, and never one about verification, scans, publishing or CI. `ship_tag_release` now refuses a tag push that would publish through trusted publishing whenever the ship's route is not trusted, whatever the project's configured route is.
+
+### Changed
+
+- **`finish_feature` and `land_fix` say when a merge buried the branch's changelog entry.** Merging develop into a feature branch can leave its new bullet under an older released version heading, so the branch looks as if it added no `[Unreleased]` entries. The refusal now names the stray entry and says to move it into `[Unreleased]`. The skill's lessons and ship-day prep list also record what the 0.17.11 / 1.10.11 ship showed: measure the built server's tool count, repair a corrupted npm cache when no sign-in link prints, keep approval-link waits short, close a stalled Dependabot PR yourself when Actions is refused, and use the CLI for a rebuilt server until the client restarts.
+
+- **A ship pushes once.** Local commits that are not pushed yet, such as an earlier Dependabot update, no longer warn in preflight and no longer stop the next `dependabot_apply`. The release commit goes on top and one `ship_push` gates and pushes them together, so the gate runs once, in a clean checkout.
+
+- **Dependency update:** snyk 1.1309.0, the scanner the dependency check runs.
+
 ## [0.1.2] - 2026-11-22
 
 ### Changed

@@ -2,7 +2,7 @@
 
 [Overview](../README.md) · [New here?](basics.md) · [Guard](guard.md) · [Ship](ship.md) · [Setup](setup.md) · **Tools** · [Security](security.md) · [Privacy](privacy.md) · [Configuration](configuration.md) · [Changelog](../CHANGELOG.md)
 
-**In short:** these are the 30 tools your assistant can use. You do not call them yourself: you ask in plain words and the assistant picks the right one. Every tool that would change something first shows a dry run (a preview) and waits for the go-ahead (`confirm: true`).
+**In short:** these are the 31 tools your assistant can use. You do not call them yourself: you ask in plain words and the assistant picks the right one. Every tool that would change something first shows a dry run (a preview) and waits for the go-ahead (`confirm: true`).
 
 ## Guard
 
@@ -37,6 +37,7 @@
 
 | Tool | Changes | What it does |
 |---|---|---|
+| `ship_run` | commits, tags, npm, the public repository | The whole ship in one call: runs each step below in order, stops on anything unexpected, and carries on where it left off |
 | `ship_preflight` | nothing | Everything that must be true before a release, including the package contents |
 | `ship_release_commit` | a commit | Bumps every version file, dates the changelog, runs the gate; all or nothing |
 | `ship_tag_release` | a tag and a GitHub Release | Tags and releases, with an SBOM and a verification report |

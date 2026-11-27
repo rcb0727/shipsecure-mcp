@@ -21,7 +21,7 @@ Ship my-package 1.4.2
 You: tap to approve my-package 1.4.2 with 2FA: <link>
 ```
 
-With trusted publishing you hear from it only at the end. Without GitHub Actions there are two taps and nothing to type: an npm sign-in link at the start, and an approval link per package. It stops early only when something is unexpected.
+With trusted publishing you hear from it only at the end. Without GitHub Actions there are two taps and nothing to type: an npm sign-in link at the start, and an approval link per package. It stops early only when something is unexpected. All of this is one tool, `ship_run`: it runs the steps in order and, if it was waiting for your tap, picks up where it left off the next time it is called.
 
 ## The patch cycle
 
